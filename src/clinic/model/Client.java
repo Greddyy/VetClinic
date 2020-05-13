@@ -5,21 +5,21 @@ public class Client {
     private String username;
     private String password;
     private String email;
-    private boolean admin;
+    private boolean doctor;
 
-    public Client(int id, String username, String password, String email, boolean admin) {
+    public Client(int id, String username, String password, String email, boolean doctor) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.admin = admin;
+        this.doctor = doctor;
     }
 
-    public Client(String username, String password, String email, boolean admin) {
+    public Client(String username, String password, String email, boolean doctor) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.admin = admin;
+        this.doctor = doctor;
     }
 
     public int getId() {
@@ -54,12 +54,12 @@ public class Client {
         this.email = email;
     }
 
-    public boolean isAdmin() {
-        return admin;
+    public boolean isDoctor() {
+        return doctor;
     }
 
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
+    public void setDoctor(boolean doctor) {
+        this.doctor = doctor;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class Client {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", admin=" + admin +
+                ", doctor=" + doctor +
                 '}';
     }
 }

@@ -2,23 +2,24 @@ package clinic.model;
 
 public class Patient {
     private int id;
-    private String name;
+    private String animal_name;
     private String species;
     private String colour;
     private String gender;
-    private String age;
+    private int age;
 
-    public Patient(int id, String name, String species, String colour, String gender, String age) {
+
+    public Patient(int id, String name, String species, String colour, String gender, int age) {
         this.id = id;
-        this.name = name;
+        this.animal_name = name;
         this.species = species;
         this.colour = colour;
         this.gender = gender;
         this.age = age;
     }
 
-    public Patient(String name, String species, String colour, String gender, String age) {
-        this.name = name;
+    public Patient(String name, String species, String colour, String gender, int age) {
+        this.animal_name = name;
         this.species = species;
         this.colour = colour;
         this.gender = gender;
@@ -33,12 +34,12 @@ public class Patient {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getAnimal_name() {
+        return animal_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAnimal_name(String animal_name) {
+        this.animal_name = animal_name;
     }
 
     public String getSpecies() {
@@ -65,11 +66,11 @@ public class Patient {
         this.gender = gender;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -77,7 +78,7 @@ public class Patient {
     public String toString() {
         return "Patient{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + animal_name + '\'' +
                 ", species='" + species + '\'' +
                 ", colour='" + colour + '\'' +
                 ", gender='" + gender + '\'' +
