@@ -1,33 +1,14 @@
-package clinic.model;
+package model;
 
 public class Client {
-    private int id;
-    private String username;
-    private String password;
-    private String email;
-    private boolean doctor;
+    String email, username, password;
+    int id;
 
-    public Client(int id, String username, String password, String email, boolean doctor) {
-        this.id = id;
+    public Client(String email, String username, String password) {
         this.username = username;
-        this.password = password;
         this.email = email;
-        this.doctor = doctor;
-    }
-
-    public Client(String username, String password, String email, boolean doctor) {
-        this.username = username;
         this.password = password;
-        this.email = email;
-        this.doctor = doctor;
-    }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getUsername() {
@@ -38,14 +19,6 @@ public class Client {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -54,22 +27,11 @@ public class Client {
         this.email = email;
     }
 
-    public boolean isDoctor() {
-        return doctor;
+    public String getPassword() {
+        return password;
     }
 
-    public void setDoctor(boolean doctor) {
-        this.doctor = doctor;
-    }
-
-    @Override
-    public String toString() {
-        return "ClientDAO{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", doctor=" + doctor +
-                '}';
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

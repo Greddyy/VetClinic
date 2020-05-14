@@ -1,65 +1,58 @@
-package clinic.model;
+package model;
 
-import clinic.utils.Constants;
+import utils.Constant;
 
 import java.sql.*;
 
 public class ClientDAO {
-    public String login(String username, String password) {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+
+    // login funkcija RETURNS message
+    public  String login(String username, String password) {
         ResultSet resultSet = null;
 
-        String msg = "";
+        String msg="";
+        String query = "SELECT * FROM " + Constant.TABLE +
+                " WHERE username = ? AND password = ?";
+
         try {
-            connection = DriverManager.getConnection(Constants.URL + Constants.DB_NAME, "root", "");
-
-            preparedStatement = connection.prepareStatement("SELECT  * FROM  " + Constants.TABLE_NAME + " Where username = ? AND password = ?");
-
+            Connection connection = DriverManager.getConnection(Constant.URL + Constant.DB_NAME, "root", "");
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                msg = "Successful login";
-            } else {
-                msg = "No user found under these credentials";
+                msg = "Successful login!";
             }
-
+            else {
+                msg = "Wrong username or password.";
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return msg;
     }
+    // register function RETURNS message
 
-    public Client getClient(String username) {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+    public String register(Client client) {
+        String query = "INSERT INTO " + Constant.TABLE + "(email, username, password) VALUES (?, ?, ?)";
+        String msg = "";
         ResultSet resultSet = null;
 
-        boolean isDoctor = false;
-        Client client = null;
         try {
-            connection = DriverManager.getConnection(Constants.URL + Constants.DB_NAME, "root", "");
+            Connection connection = DriverManager.getConnection(Constant.URL + Constant.DB_NAME, "root", "");
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, client.getEmail());
+            preparedStatement.setString(2, client.getUsername());
+            preparedStatement.setString(3, client.getPassword());
+            preparedStatement.executeUpdate();
+            msg = "Client successfully created!";
 
-            preparedStatement = connection.prepareStatement("SELECT * FROM " + Constants.TABLE_NAME + " Where username = ?");
-
-            preparedStatement.setString(1, username);
-            resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String username2 = resultSet.getString("username");
-                String password = resultSet.getString("password");
-                String email = resultSet.getString("email");
-                boolean admin = resultSet.getBoolean("doctor");
-                //int id, String username, String password, String email, boolean admin
-                client = new Client (id, username2, password, email, admin);
-            }
         } catch (SQLException e) {
             e.printStackTrace();
+            msg = "Failed creating new client!";
         }
-        return client;
+        return msg;
     }
-
 }
+
